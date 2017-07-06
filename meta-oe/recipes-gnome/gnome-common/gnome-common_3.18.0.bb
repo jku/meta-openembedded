@@ -12,7 +12,10 @@ SRC_URI[archive.md5sum] = "933258d9c23e218eb6eec9cc1951b053"
 SRC_URI[archive.sha256sum] = "22569e370ae755e04527b76328befc4c73b62bfd4a572499fde116b8318af8cf"
 
 EXTRA_AUTORECONF = ""
-DEPENDS = ""
+# Let autoconf-archive provide AX_* macros. Depend on autoconf-archive
+# because a lot of old software expects gnome-common to provide them.
+EXTRA_OECONF = "--with-autoconf-archive"
+DEPENDS = "autoconf-archive"
 
 FILES_${PN} += "${datadir}/aclocal"
 FILES_${PN}-dev = ""
